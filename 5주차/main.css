@@ -1,0 +1,126 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #fefcf9;  
+    color: #4A4A4A; 
+    
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    padding: 2em; 
+}
+/*배경 역할을 할 body 부분 스타일 지정*/
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 2em;
+    border-radius: 15px;
+}
+/*폼 스타일 지정*/
+
+h1 {
+    color: #356290;  
+    text-align: center;
+
+    margin-bottom: 0.5em; 
+}
+/*웹의 제목을 표현하는 h1부분 색상, 정렬 지정*/
+
+legend {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #222222;
+    width: auto;
+}
+/*폼의 제목을 캡션처럼 표현하는 리젠드 태그 폰트 크기, 굵기, 색상 지정*/
+/*width는 auto로 둠으로써 입력한 글자 길이에 따라 자동으로 맞춰지도록 함*/
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    color: #4A4A4A;
+}
+/*라벨 스타일 지정 블록형식, 글자 굵기, 색상*/
+
+input[type="text"], input[type="email"],
+select,textarea {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    box-sizing: border-box; 
+    margin-bottom: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+/*닉네임과 이메일을 입력받는 text, email 타입의 input 태그, 기타사항을 입력하는 textarea 태그 등 직접 텍스트를 입력하는 부분의 스타일 지정*/
+
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-bottom: 1.5em;
+}
+/*라디오버튼, 체크박스 부분 스타일 지정*/
+
+.radio-group label, .checkbox-group label {
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+/*라디오버튼, 체크박스 관련 문구가 들어가는 라벨 스타일 지정*/
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 0.5em;
+    cursor: pointer;
+    accent-color: #00A2E8;
+}
+ /*체크 및 라디오 버튼 커서 액션, 포인트 색상 변경*/
+
+input[type="range"] {
+    width: 100%;
+    margin-top: 0.5em;
+    cursor: pointer;
+    accent-color: #3282F6;
+}
+/*스크롤바 형식으로 입력받았던 range타입의 인풋태그 색상, 크기, 커서 지정*/
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #888888;
+    margin-bottom: 1.5em;
+}
+/*스크롤바 설명이 들어가는 라벨 폰트 크기, 색상, 하단 여백 지정*/
+
+.button-group {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin-top: 1.5em;
+}
+/*버튼 그룹 전체의 여백 스타일 지정*/
+
+button {
+    padding: 0.8em 1.5em;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+}
+/*버튼의 내부여백, 폰트크기, 커서, 지정*/
+
+button[type="submit"] {
+    background-color: #3282F6;
+    color: white;
+}
+
+button[type="reset"] {
+    background-color: #f0f0f0;
+    color: #555555;
+}
+/*제출 버튼과 재작성 버튼 색상 지정*/

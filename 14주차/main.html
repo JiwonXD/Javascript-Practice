@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>인터넷프로그래밍 14주차 실습</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>인터넷프로그래밍 14주차 실습</h1>
+
+  <div class="page">
+    <div class="cards">
+      <section class="section" id="radio-section">
+        <h2>라디오 버튼</h2>
+        <div class="controls" id="radio-controls">
+          <div class="control-item">
+            <input type="radio" name="fruits" id="radio-grape" value="grape" checked>
+            <label for="radio-grape">포도</label>
+          </div>
+          <div class="control-item">
+            <input type="radio" name="fruits" id="radio-banana" value="banana">
+            <label for="radio-banana">바나나</label>
+          </div>
+          <div class="control-item">
+            <input type="radio" name="fruits" id="radio-plum" value="plum">
+            <label for="radio-plum">자두</label>
+          </div>
+        </div>
+        <div class="preview" id="radio-preview"></div>
+      </section>
+
+      <section class="section" id="checkbox-section">
+        <h2>체크박스</h2>
+        <div class="controls" id="checkbox-controls">
+          <div class="control-item">
+            <input type="checkbox" id="checkbox-strawberry" value="strawberry">
+            <label for="checkbox-strawberry">딸기</label>
+          </div>
+          <div class="control-item">
+            <input type="checkbox" id="checkbox-grape" value="grape">
+            <label for="checkbox-grape">포도</label>
+          </div>
+          <div class="control-item">
+            <input type="checkbox" id="checkbox-peach" value="peach">
+            <label for="checkbox-peach">복숭아</label>
+          </div>
+        </div>
+        <div class="preview" id="checkbox-preview"><em>선택된 항목이 없습니다.</em></div>
+      </section>
+
+      <section class="section" id="select-section">
+        <h2>Select 메뉴</h2>
+        <div class="controls">
+          <select id="item-select">
+            <option value="strawberry">딸기</option>
+            <option value="grape">포도</option>
+            <option value="plum">자두</option>
+          </select>
+        </div>
+        <div class="preview" id="select-preview"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

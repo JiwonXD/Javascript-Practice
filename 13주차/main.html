@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>13주차 실습</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <section id="rotate-section">
+      <h2>이미지 회전</h2>
+      <div class="rotator">
+        <img id="logoImg" src="https://mblogthumb-phinf.pstatic.net/MjAyNTAxMTBfMTk5/MDAxNzM2NDQ1OTk3MzQ1.JbQhJCCFYsntu-WN1SF92nUni15EwuxdFkkop8kf9gcg.jcXWHD0HiBjGJhyS-xyo-0o91-b29k5OpoNqCnwRpSog.JPEG/image.JPEG?type=w400" alt="로고">
+      </div>
+      <div class="btns">
+        <button id="btnPlus">+90°</button>
+        <button id="btnMinus">-90°</button>
+      </div>
+      <p class="angle-text">현재 각도: <span id="angleValue">0</span>°</p>
+    </section>
+
+    <section id="gamble-section">
+      <h2>갬블링 게임</h2>
+      <div class="slots">
+        <button class="slot-btn" id="slot1" data-slot="1">0</button>
+        <button class="slot-btn" id="slot2" data-slot="2">0</button>
+        <button class="slot-btn" id="slot3" data-slot="3">0</button>
+      </div>
+      <p id="gamble-result" class="gamble-result"></p>
+    </section>
+
+    <section id="event-section">
+      <h2>자바스크립트 이벤트 처리 예제</h2>
+
+      <div class="example">
+        <h3>예제 1: 키 이벤트</h3>
+        <p>엔터키 -> 배경색 노랑 / 스페이스 키 -> 배경색 파랑</p>
+        <div id="keyBox" class="key-demo" tabindex="0">키보드 입력 테스트</div>
+      </div>
+
+      <div class="example">
+        <h3>예제 2: 버튼 클릭 시 의도적 에러 발생</h3>
+        <button id="errorBtn">에러 발생</button>
+        <p id="errorMsg"></p>
+      </div>
+    </section>
+
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

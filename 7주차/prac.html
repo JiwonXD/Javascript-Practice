@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7주차 실습문제 1번</title>
+    <style>
+        #nameBtn {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+        }
+
+        #gradeBtn {
+            background-color: red;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+        }
+
+        /* 추가: 회색 결과 영역 스타일 */
+        .result-box {
+            background: #f3f4f6; /* 연한 회색 */
+            border-radius: 8px;
+            padding: 14px;
+            margin-top: 12px;
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            color: #333;
+        }
+        #gradeResult {
+            font-weight: 600;
+            white-space: pre-wrap; /* textContent에서 \n로 줄바꿈 허용 */
+        }
+    </style>
+</head>
+<body>
+    <h1>예제 1: Mouse Hover 시 이미지 변경</h1>
+    <hr>
+
+    <img id="hoverImg" alt="hover image" width="400">
+    
+    <script>
+        // 변수 2개로 원본 이미지와 호버 이미지 URL을 저장
+        const originalSrc = 'https://www.healthweek.co.kr/boardImage/healthweek/20200827/MC4xMjIyMTIwMCAxNTk4NTE2NjA5.jpeg'; // 원본 이미지 URL 또는 경로
+        const hoverSrc = 'https://contents-cdn.viewus.co.kr/image/2025/07/CP-2025-0008/image-860aa5a2-e527-4363-851d-c5d79e94b218.jpeg';       // 호버 시 변경될 이미지 URL 또는 경로
+
+        const img = document.getElementById('hoverImg');
+
+        // HTML에 변수를 쓸 수는 없으므로 JS에서 초기 src를 설정
+        img.src = originalSrc;
+
+        // 호버 시 이미지 변경
+        img.addEventListener('mouseover', function () {
+            img.src = hoverSrc;
+        });
+
+        // 마우스가 떠나면 원래 이미지로 복원
+        img.addEventListener('mouseout', function () {
+            img.src = originalSrc;
+        });
+    </script>
+
+    <h1>예제 2: Prompt로 텍스트 입력 및 확인</h1>
+    <hr>
+
+    <button id="nameBtn">이름 입력하기</button>
+    <div id="welcomeMsg" style="margin-top:10px; font-weight:600;"></div>
+
+    <script>
+        const btn = document.getElementById('nameBtn');
+        const welcomeMsg = document.getElementById('welcomeMsg');
+
+        btn.addEventListener('click', function () {
+            const name = prompt('당신의 이름은 무엇인가요?'); // 한 번만 입력 받음
+
+            if (name === null) { // 취소 클릭
+                alert('입력이 취소되었습니다.');
+                welcomeMsg.textContent = '입력이 취소되었습니다.';
+                welcomeMsg.style.color = ''; // 색 초기화
+                return;
+            }
+
+            if (name.trim()) { // 값이 있을 경우
+                alert(`반갑습니다, ${name.trim()}님!`);
+                welcomeMsg.textContent = `${name.trim()}님, 환영합니다!`;
+                welcomeMsg.style.color = '#128FFF';
+            } else { // 값이 없을 경우: 재입력은 버튼을 다시 클릭하도록 안내
+                alert('이름을 입력해주세요.');
+                welcomeMsg.textContent = '이름을 입력해주세요!';
+                welcomeMsg.style.color = 'red';
+            }
+        });
+    </script>
+
+    <h1>예제 3: 학점 계산기 (버튼 클릭)</h1>
+    <hr>
+    <p>아래 '학점 계산하기' 버튼을 클릭하면 점수를 입력하는 <b>prompt</b> 창이 나타납니다.
+    <br>
+    입력된 점수에 따른 학점과 설명이 아래 회색 영역에 표시됩니다.</p>
+
+    
+    <button id="gradeBtn" style="margin-top:12px;">학점 계산하기</button>
+    <div class="result-box">
+        <div id="gradeResult">결과가 여기에 표시됩니다.</div>
+    </div>
+    <!--회색 박스 안에 결과 텍스트를 넣음-->
+    
+    <script>
+        const gradeBtn = document.getElementById('gradeBtn');
+        const gradeResult = document.getElementById('gradeResult');
+
+        gradeBtn.addEventListener('click', calculateGrade); // 버튼 클릭 시 calculateGrade 함수 실행
+
+        function calculateGrade() {
+            const input = prompt('0 ~ 100 사이의 점수를 입력하세요:');
+            if (input === null) {
+                gradeResult.style.color = ''; // 색 초기화
+                gradeResult.textContent = '입력이 취소되었습니다.';
+                return;
+            }
+
+            //빈칸 처리
+            if (input.trim() === '') {
+                alert('유효한 숫자(0~100)를 입력하세요.');
+                gradeResult.style.color = 'red';
+                gradeResult.textContent = '❌ 잘못된 입력입니다. 0과 100 사이의 숫자를 입력해주세요.';
+                return;
+            }
+
+            //입력값을 숫자로 변환
+            const score = Number(input);
+            if (Number.isNaN(score) || score < 0 || score > 100) {
+                alert('유효한 숫자(0~100)를 입력하세요.');
+                gradeResult.style.color = 'red';
+                gradeResult.textContent = '❌ 잘못된 입력입니다. 0과 100 사이의 숫자를 입력해주세요.';
+                return;
+            }
+
+            //if문을 통해 구간별 학점 지정
+            let letter;
+            if (score >= 90) letter = 'A';
+            else if (score >= 80) letter = 'B';
+            else if (score >= 70) letter = 'C';
+            else if (score >= 60) letter = 'D';
+            else letter = 'F';
+
+            // 결과 출력 (textContent + '\n' 사용, white-space: pre-wrap 적용되어 줄바꿈 됨)
+            gradeResult.style.color = ''; // 정상 출력일 때 기본 색으로
+            gradeResult.textContent = `입력된 점수 : ${score}\n당신의 학점은 '${letter}'입니다.`;
+        }
+    </script>
+
+</body>
+</html>

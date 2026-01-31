@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9주차 실습문제</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .button-container {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 12px 24px;
+            margin-right: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background-color: blue;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .box {
+            width: 100%;
+            height: 200px;
+            border: 3px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #333;
+            background-color: #e0e0e0; /* 기본 회색 */
+        }
+
+        hr {
+            border-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>예제 1: 박스 스타일 변경하기</h1>
+    <hr>
+    <p>버튼을 클릭하여 아래 박스의 배경색을 변경해보세요.</p>
+    
+    <!--각 버튼에 id 부여-->
+    <div class="button-container">
+        <button id="redBtn">빨간색</button>
+        <button id="blueBtn">파란색</button>
+        <button id="resetBtn">초기화</button>
+    </div>
+
+    <!--색상을 변경시킬 박스-->
+    <div id="box" class="box">
+        색상이 변경됩니다
+    </div>
+
+    <script>
+        //변수에 요소 저장
+        const box = document.getElementById('box');
+        const redBtn = document.getElementById('redBtn');
+        const blueBtn = document.getElementById('blueBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // 빨간색 버튼 클릭 이벤트
+        redBtn.addEventListener('click', function() {
+            box.style.backgroundColor = 'red';
+        });
+
+        // 파란색 버튼 클릭 이벤트
+        blueBtn.addEventListener('click', function() {
+            box.style.backgroundColor = 'blue';
+        });
+
+        // 초기화 버튼 클릭 이벤트 (회색으로 복원)
+        resetBtn.addEventListener('click', function() {
+            box.style.backgroundColor = '#e0e0e0';
+        });
+    </script>
+
+    <h1>예제 2: 간단한 덧셈 계산기</h1>
+    <hr>
+    <p>버튼을 클릭하면 숫자 2개를 입력받아 덧셈 결과를 출력합니다.</p>
+
+    <div class="button-container">
+        <button id="calcBtn">덧셈 시작하기</button>
+    </div>
+
+    <div id="result" style="margin-top:10px; font-weight:600; font-size:18px;">
+        결과: 
+    </div>
+
+    <script>
+        const calcBtn = document.getElementById('calcBtn');
+        const result = document.getElementById('result');
+
+        calcBtn.addEventListener('click', function() {
+            // 첫 번째 값 입력
+            const firstValue = prompt('첫 번째 숫자를 입력하세요:');
+            
+            // 두 번째 값 입력
+            const secondValue = prompt('두 번째 숫자를 입력하세요:');
+
+            // 숫자로 변환
+            const num1 = Number(firstValue);
+            const num2 = Number(secondValue);
+
+            // 입력 값 유무 확인
+            if (firstValue && secondValue && firstValue.trim() !== '' && secondValue.trim() !== '' 
+                && !Number.isNaN(num1) && !Number.isNaN(num2)) {
+                // 덧셈 결과 반환
+                const sum = num1 + num2;
+                result.textContent = `결과: ${num1} + ${num2} = ${sum}`;
+                result.style.color = 'black';
+            } else {
+                // 값이 없거나 유효하지 않은 숫자일 경우
+                alert('유효한 두 숫자를 입력해주세요!');
+                result.textContent = '결과: 올바른 값을 입력해주세요.';
+                result.style.color = 'red';
+            }
+        });
+    </script>
+
+    <h1>예제 3: 텍스트 보이기 / 숨기기</h1>
+    <hr>
+    <p>버튼을 클릭하여 아래의 상세 내용을 보거나 숨겨보세요.</p>
+
+    <div class="button-container">
+        <button id="toggleBtn">숨기기</button>
+    </div>
+
+    <div id="textBox" style="margin-top: 20px; padding: 20px; background-color: #f0f0f0; border-radius: 5px;">
+        <p style="font-size: 16px; margin: 0; line-height: 1.6;">
+            이 내용은 숨겨져 있던 상세 설명입니다. JavaScript의 DOM(Document Object Model) 
+            조작을 통해 HTML 요소의 스타일을 동적으로 변경할 수 있습니다.
+        </p>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('toggleBtn');
+        const textBox = document.getElementById('textBox');
+
+        // 텍스트 보이기/숨기기 함수
+        function toggleText() {
+            if (textBox.style.display === 'none') {
+                // 숨겨져 있으면 보이기
+                textBox.style.display = 'block';
+                toggleBtn.textContent = '숨기기';
+            } else {
+                // 보이면 숨기기
+                textBox.style.display = 'none';
+                toggleBtn.textContent = '자세히 보기';
+            }
+        }
+
+        // 버튼 클릭 이벤트에 함수 연결
+        toggleBtn.addEventListener('click', toggleText);
+    </script>
+
+    <h1>예제 4: 특정 이미지 출력하기</h1>
+    <hr>
+    <p>버튼을 클릭하여 이미지를 변경해보세요.</p>
+
+    <div style="margin-top: 20px; text-align: center;">
+        <img id="displayImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIZFQlEXYnOEagHJ8Q9G8XcJTdDN8Kyzh8Pg&s" 
+             alt="표시 이미지" 
+             style="max-width: 100%; height: auto; border: 3px solid black; border-radius: 5px; margin-bottom: 20px;">
+    </div>
+
+    <div class="button-container" style="text-align: center;">
+        <button id="bananaBtn">Banana</button>
+        <button id="strawberryBtn">Strawberry</button>
+    </div>
+
+    <script>
+        // 이미지 주소를 변수로 지정
+        const bananaImage = 'https://i.namu.wiki/i/Mj0aArUbJiq5_c500MqmbYyDPWnSiDBCsxbesdkR0XTOtDvwrjj2ponJvctbYgQ7zPE_LvjsJHAl786rZu0tkw.webp';
+        const strawberryImage = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_halved.jpg/250px-Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_halved.jpg';
+
+        // DOM 요소 가져오기
+        const bananaBtn = document.getElementById('bananaBtn');
+        const strawberryBtn = document.getElementById('strawberryBtn');
+
+        // Banana 버튼 클릭
+        bananaBtn.addEventListener('click', function() {
+            displayImg.src = bananaImage;
+        });
+
+        // Strawberry 버튼 클릭
+        strawberryBtn.addEventListener('click', function() {
+            displayImg.src = strawberryImage;
+        });
+    </script>
+
+</body>
+</html>

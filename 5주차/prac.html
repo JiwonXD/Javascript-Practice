@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5주차 실습문제 1번</title>
+    <style>
+        @import url(main.css); /*main.css 파일 임포트로 불러옴 (스타일이 들어있음)*/
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>⭐ 나만의 취미 추천 설문 ⭐</h1>
+
+        <form> <!--폼 생성-->
+            <fieldset> <!--필드셋 생성-->
+                <legend>기본 정보</legend> <!--legend 태그로 캡션형식으로 이 필드셋의 제목 표현-->
+                <label for="user-name">닉네임</label>
+                <input type="text" id="id-name" name="name" placeholder="닉네임을 입력하세요" required>
+
+                <label for="user-email">이메일</label>
+                <input type="email" id="id-email" name="email" placeholder="example@email.com" required>
+
+                <!--label을 통해 닉네임과 이메일 등 입력받을 정보가 무엇인지 표시해줌-->
+                <!--각각 text, email 타입의 인풋태그를 이용하여 입력받음, required 태그를 통해 필수로 입력해야하도록 지정함-->
+            </fieldset>
+
+            <fieldset> <!--필드셋 생성-->
+                <legend>취미 성향 분석</legend> <!--legend 태그로 캡션형식으로 이 필드셋의 제목 표현-->
+                <label>선호하는 활동 장소는?</label>
+                <div class="radio-group">
+                    <input type="radio" id="id-indoor" name="place" value="indoor">
+                    <label for="id-indoor">실내 활동</label>
+                    <input type="radio" id="id-outdoor" name="place" value="outdoor">
+                    <label for="id-outdoor">야외 활동</label>                    
+                </div>
+                <!--라디오버튼을 통해 선택지 중 단 한가지만 고를 수 있도록 함-->
+
+                <label>관심있는 분야는?</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="id-art" name="hobby" value="art">
+                    <label for="id-art">예술</label>
+                    <input type="checkbox" id="id-music" name="hobby" value="music">
+                    <label for="id-music">음악</label>
+                    <input type="checkbox" id="id-sports" name="hobby" value="sports">
+                    <label for="id-sports">스포츠</label>
+                     <input type="checkbox" id="id-book" name="hobby" value="book">
+                    <label for="id-book">독서</label>
+                </div>
+                <!--체크박스를 통해 동시에 여러 선택지를 모두 고를 수 있게 함-->
+
+                <label for="time-level">주간 취미활동 일수?</label>
+                <input type="range" id="time-level" name="time" min="1" max="7" step="1" value="4">
+                <div class="range-labels">
+                    <span>1일</span>
+                    <span>7일</span>
+                </div>
+                <!--range 인풋 태그를 통해 스크롤바 형식의 입력을 할 수 있도록 함-->
+                <!--주간 일수 이므로 1부터 7까지의 값을 스크롤하여 지정할 수 있도록 함-->
+
+                <label for="satisfaction">여가생활 만족도</label>
+                <select id="satisfaction" name="satisfaction">
+                    <option value="">2019112094 박지원</option>
+                    <option value="very satisfied">매우 만족</option>
+                    <option value="satisfied">만족</option>
+                    <option value="normal">보통</option>
+                    <option value="dissatisfied">불만족</option>
+                    <option value="very dissatisfied">매우 불만족</option>
+                </select>
+                <!--select 태그를 통해 만족도를 선택할 수 있도록 함-->
+
+                <label for="etc">비고</label>
+                <textarea id="etc" name="etc" rows="3" 
+                          placeholder="기타 추가사항이 있다면 입력해주세요"></textarea>
+                <!--textarea 태그 통해 기타 텍스트를 입력받음-->
+            </fieldset>
+
+            <div class="button-group">
+                <button type="submit">나에게 맞는 취미 추천받기</button>
+                <button type="reset">다시 작성하기</button>
+            </div>
+            <!--버튼 그룹을 통해 폼 제출 버튼과 재작성 버튼을 구성함-->
+        </form>
+    </div>
+</body>
+</html>

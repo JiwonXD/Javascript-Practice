@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>12주차 실습</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding:40px; line-height:1.5; }
+        h1 { margin-bottom:10px; }
+        #attempt-title { margin:20px 0 8px; font-weight:bold; }
+        #attempts { color:#b00020; font-weight:bold; white-space:pre-line; }
+        #result { margin-top:14px; font-weight:bold; }
+        button { padding:10px 18px; border:none; background:#007bff; color:#fff; border-radius:6px; cursor:pointer; }
+        button:hover { background:#005ec2; }
+        hr { margin:24px 0 12px; }
+    </style>
+</head>
+<body>
+    <h1>숫자 맞추기 게임</h1>
+    <button id="start-btn">게임 시작</button>
+    <hr>
+    <div id="attempt-title">------------입력한 숫자------------</div>
+    <div id="attempts"></div>
+    <hr>
+    <div id="result"></div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const startBtn = document.getElementById('start-btn');
+        const attemptsEl = document.getElementById('attempts');
+        const resultEl = document.getElementById('result');
+
+        let target = null;
+
+        function startGame() {
+            target = Math.floor(Math.random() * 100) + 1;
+            attemptsEl.textContent = '';
+            resultEl.textContent = '';
+            const attempts = [];
+            let count = 0;
+            let exitedByZero = false;
+
+            while (true) {
+                const input = prompt("1~100 사이 숫자 입력 (0 입력시 종료)");
+                if (input === null) { alert("게임 취소"); break; }
+                const n = Number(input);
+                if (!Number.isInteger(n)) { alert("정수를 입력하세요."); continue; }
+
+                if (n === 0) { // 0 종료
+                    alert("게임을 종료합니다...");
+                    exitedByZero = true;
+                    break;
+                }
+
+                if (n < 1 || n > 100) { alert("범위를 벗어났습니다."); continue; }
+
+                attempts.push(n);
+                count++;
+
+                if (n === target) {
+                    alert("정답!");
+                    break;
+                } else if (n > target) {
+                    alert(n + " → down");
+                } else {
+                    alert(n + " → up");
+                }
+            }
+
+            attemptsEl.textContent = attempts.join("\n");
+
+            if (!exitedByZero && attempts.includes(target)) {
+                resultEl.textContent = "🎉 정답! " + count + "번 만에 맞춤";
+            } else if (exitedByZero) {
+                resultEl.textContent = "0 입력으로 종료 (정답: " + target + ")";
+            } else {
+                resultEl.textContent = "취소됨 (정답: " + target + ")";
+            }
+        }
+
+        startBtn.addEventListener('click', startGame);
+    });
+    </script>
+</body>
+</html>

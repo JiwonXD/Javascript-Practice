@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>할 일 목록 DOM 조작 실습</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 40px; line-height: 1.5; }
+    h1 { margin-bottom: 12px; }
+    .toolbar { display: flex; gap: 8px; margin-bottom: 16px; }
+    input[type="text"] { flex: 1; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; }
+    button { padding: 10px 14px; border: none; background: #007bff; color: #fff; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #005ec2; }
+    ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    li { display: flex; justify-content: space-between; align-items: center; background: #f5f7fb; border: 1px solid #e3e6ef; border-radius: 8px; padding: 12px; }
+    .remove-btn { background: #e74c3c; }
+    .remove-btn:hover { background: #c0372a; }
+    #msg { margin-top: 12px; color: #555; min-height: 20px; }
+  </style>
+</head>
+<body>
+  <h1>할 일 목록 DOM 조작 실습</h1>
+
+  <div class="toolbar">
+    <input id="todo-input" type="text" placeholder="새로운 할 일을 입력하세요" />
+    <button id="add-btn">항목 추가</button>
+  </div>
+
+  <h3>나의 할 일 목록:</h3>
+  <ul id="todo-list">
+    <!-- 예시 기본 항목 하나 -->
+    <li>
+      <span>JavaScript DOM 공부하기</span>
+      <button class="remove-btn">제거</button>
+    </li>
+  </ul>
+
+  <div id="msg"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('todo-input');
+      const addBtn = document.getElementById('add-btn');
+      const list = document.getElementById('todo-list');
+      const msg = document.getElementById('msg');
+
+      function addItem() {
+        const text = input.value.trim();
+        if (!text) { msg.textContent = '내용을 입력하세요.'; input.focus(); return; }
+
+        const li = document.createElement('li');
+        const span = document.createElement('span');
+        span.textContent = text;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = '제거';
+        removeBtn.className = 'remove-btn';
+
+        li.appendChild(span);
+        li.appendChild(removeBtn);
+        list.appendChild(li);
+
+        input.value = '';
+        input.focus();
+        msg.textContent = '새로운 항목이 추가되었습니다!';
+      }
+
+      // 추가
+      addBtn.addEventListener('click', addItem);
+
+      // 제거
+      list.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-btn')) {
+          const li = e.target.closest('li');
+          if (li) {
+            li.remove();
+            msg.textContent = '항목이 성공적으로 제거되었습니다!';
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

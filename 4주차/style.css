@@ -1,0 +1,29 @@
+.main-header {
+    background-color: #333333;
+    color: white;
+    text-align: center;
+}
+
+.sub-header {
+    background-color: #444444;
+    color: white;
+    text-align:center;
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
+/*양 옆에 회색 배경색을 주기 위해서 바디를 회색으로, 섹션 부분을 흰색으로 설정*/
+body {
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+section {
+    max-width: 1800px;
+    background-color:white;
+    margin: auto;
+}
+
+table {
+    text-align: center;
+}

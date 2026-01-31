@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11주차 실습</title>
+    <style>
+        /* 전체 페이지 스타일 */
+        body {
+            background-color: #f5f5f5; /* 연한 회색 배경 */
+            padding: 20px;
+        }
+
+        /* 전체 컨텐츠를 감싸는 컨테이너 */
+        .container {
+            max-width: 800px; /* 최대 너비 제한 */
+            margin: 0 auto; /* 중앙 정렬 */
+        }
+
+        /* 각 예제 섹션 스타일 */
+        section {
+            background: white; /* 흰색 배경 */
+            padding: 30px;
+            margin-bottom: 30px; /* 섹션 간 간격 */
+            border-radius: 10px; /* 둥근 모서리 */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 그림자 효과 */
+        }
+
+        /* span 결과값 스타일 */
+        span {
+            color: blue;
+            font-weight: bold;
+        }
+
+        /* D-day 일수 강조 */
+        .dday-days {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* D-day 결과 텍스트 */
+        .dday-result {
+            color: blue;
+            font-weight: bold;
+        }
+
+        .math-btn {
+            border: none;
+            border-radius: 8px;
+            padding: 10px 24px;
+            margin: 8px 8px 0 0;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 1. Date 객체 실습 -->
+        <section>
+            <h2>Date 객체</h2>
+            <div>
+                <p>// getFullYear(): 연도 <br>결과: <span id="year"></span></p>
+                <p>// getMonth(): 월 (0부터 시작하므로 +1) <br>결과: <span id="month"></span></p>
+                <p>// getDate(): 일 <br>결과: <span id="date"></span></p>
+                <p>// toLocaleString(): 현지 시간 형식 문자열 <br>결과: <span id="time"></span></p>
+            </div>
+        </section>
+
+        <!-- 2. Array 객체 실습 -->
+        <section>
+            <h2>Array 객체 (찾기 메소드)</h2>
+            <div>
+                <p>원본 배열: <code>const fruits = ["Apple", "Banana", "Cherry", "Banana"];</code></p>
+                <p>// find(): 조건을 만족하는 첫 번째 '요소' (Banana)<br>결과: <span id="arr-find"></span></p>
+                <p>// findIndex(): 조건을 만족하는 첫 번째 '인덱스' (Banana)<br>결과: <span id="arr-findIndex"></span></p>
+                <p>// indexOf(): 특정 요소의 첫 번째 '인덱스' (Banana)<br>결과: <span id="arr-indexOf"></span></p>
+                <p>// lastIndexOf(): 특정 요소의 마지막 '인덱스' (Banana)<br>결과: <span id="arr-lastIndexOf"></span></p>
+                <p>// includes(): 특정 요소 '포함' 여부 (Cherry)<br>결과: <span id="arr-includes"></span></p>
+            </div>
+        </section>
+
+        <!-- 3. String 객체 실습 -->
+        <section>
+            <h2>String 객체 (찾기 메소드)</h2>
+            <div>
+                <p>원본 문자열: <code>const text = "Hello, JavaScript World!";</code></p>
+                <p>// indexOf(): 'JavaScript' 문자열의 시작 '인덱스'<br>결과: <span id="str-indexOf"></span></p>
+                <p>// includes(): 'World' 문자열 '포함' 여부<br>결과: <span id="str-includes"></span></p>
+                <p>// startsWith(): 'Hello'로 '시작'하는지 여부<br>결과: <span id="str-startsWith"></span></p>
+                <p>// endsWith(): '!'로 '끝'나는지 여부<br>결과: <span id="str-endsWith"></span></p>
+                <p>// charAt(): 7번 인덱스의 '문자'<br>결과: <span id="str-charAt"></span></p>
+            </div>
+        </section>
+
+        <!-- 4. D-day 계산기 실습 -->
+        <section>
+            <h2>D-day 계산기 (크리스마스까지 남은 시간)</h2>
+            <div>
+                <p>오늘 날짜: <span id="today" style="color:green"></span></p>
+                <p class="dday-result" id="dday"></p>
+            </div>
+        </section>
+
+        <!-- 5. Math 객체 계산기 -->
+        <section style="background: #FBFADD;">
+            <h2 style="text-align: center;">Math 객체 계산기</h2>
+            <div style="background: white; border-radius: 18px; padding: 28px 24px; max-width: 420px; margin: 0 auto;">
+                <label>
+                    입력값:
+                    <input type="text" id="math-input" placeholder="숫자 입력" style="margin-left:10px;">
+                </label>
+                <br><br>
+                <label>
+                    계산결과:
+                    <input type="text" id="math-result" readonly style="margin-left:10px;">
+                </label>
+                <br><br>
+                <button class="math-btn" id="btn-sin">SIN(각도)</button>
+                <button class="math-btn" id="btn-log">LOG</button>
+                <button class="math-btn" id="btn-sqrt">SQRT</button>
+                <button class="math-btn" id="btn-abs">ABS</button>
+            </div>
+        </section>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Date 객체
+        const now = new Date();
+        document.getElementById('year').textContent = now.getFullYear();
+        document.getElementById('month').textContent = now.getMonth() + 1;
+        document.getElementById('date').textContent = now.getDate();
+        document.getElementById('time').textContent = now.toLocaleString();
+
+        // 2. Array 객체 실습
+        const fruits = ["Apple", "Banana", "Cherry", "Banana"];
+        document.getElementById('arr-find').textContent =
+            fruits.find(fruit => fruit === "Banana");
+        document.getElementById('arr-findIndex').textContent =
+            fruits.findIndex(fruit => fruit === "Banana");
+        document.getElementById('arr-indexOf').textContent =
+            fruits.indexOf("Banana");
+        document.getElementById('arr-lastIndexOf').textContent =
+            fruits.lastIndexOf("Banana");
+        document.getElementById('arr-includes').textContent =
+            fruits.includes("Cherry");
+
+        // 3. String 객체 실습
+        const text = "Hello, JavaScript World!";
+        document.getElementById('str-indexOf').textContent =
+            text.indexOf("JavaScript");
+        document.getElementById('str-includes').textContent =
+            text.includes("World");
+        document.getElementById('str-startsWith').textContent =
+            text.startsWith("Hello");
+        document.getElementById('str-endsWith').textContent =
+            text.endsWith("!");
+        document.getElementById('str-charAt').textContent =
+            text.charAt(7);
+
+        // 4. D-day 계산기
+        document.getElementById('today').textContent =
+            `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일`;
+
+        const christmas = new Date(now.getFullYear(), 11, 25, 0, 0, 0);
+        let diffMs = christmas - now;
+        if (diffMs <= 0) {
+            document.getElementById('dday').textContent = "크리스마스가 지났습니다!";
+        } else {
+            let totalSeconds = Math.floor(diffMs / 1000);
+            let days = Math.floor(totalSeconds / (60 * 60 * 24));
+            let hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+            let mins = Math.floor((totalSeconds % (60 * 60)) / 60);
+            let secs = Math.floor(totalSeconds % 60);
+
+            document.getElementById('dday').innerHTML =
+                `크리스마스까지 <span class="dday-days">${days}일</span> ${hours}시간 ${mins}분 ${secs}초 남았습니다!`;
+        }
+
+        // 5. Math 객체 계산기
+        const input = document.getElementById('math-input');
+        const result = document.getElementById('math-result');
+
+        document.getElementById('btn-sin').addEventListener('click', function() {
+            const val = Number(input.value);
+            if (isNaN(val)) {
+                result.value = "숫자를 입력하세요";
+                return;
+            }
+            // 각도를 라디안으로 변환 후 Math.sin
+            result.value = Math.sin(val * Math.PI / 180).toFixed(6);
+        });
+
+        document.getElementById('btn-log').addEventListener('click', function() {
+            const val = Number(input.value);
+            if (isNaN(val) || val <= 0) {
+                result.value = "양수를 입력하세요";
+                return;
+            }
+            result.value = Math.log(val).toFixed(6);
+        });
+
+        document.getElementById('btn-sqrt').addEventListener('click', function() {
+            const val = Number(input.value);
+            if (isNaN(val) || val < 0) {
+                result.value = "0 이상의 숫자 입력";
+                return;
+            }
+            result.value = Math.sqrt(val).toFixed(6);
+        });
+
+        document.getElementById('btn-abs').addEventListener('click', function() {
+            const val = Number(input.value);
+            if (isNaN(val)) {
+                result.value = "숫자를 입력하세요";
+                return;
+            }
+            result.value = Math.abs(val);
+        });
+    });
+    </script>
+</body>
+</html>
